@@ -1,3 +1,10 @@
+// Verificar si el token está presente en el sessionStorage
+const token = sessionStorage.getItem('token');
+if (!token) {
+    // Si no hay token, redirige al usuario a la página de inicio de sesión
+    window.location.href = "/";
+}
+
 // Obtén el token desde donde lo tengas almacenado
 const token = localStorage.getItem('token');
 
