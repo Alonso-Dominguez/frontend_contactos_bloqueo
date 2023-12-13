@@ -69,15 +69,17 @@
 
             if (response.ok) {
                 alert("Login successful!\nToken: " + data.token);
+                // Almacenar el token en LocalStorage
+                localStorage.setItem('token', data.token);
                 // Redirigir a la página de inicio
                 window.location.href = "/inicio";
             } else {
                 alert("Login failed.\n" + data.detail);
             }
-        } catch (error) {
-            console.error("Error:", error);
-            alert("An error occurred during login.");
-        }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("An error occurred during login.");
+            }
     }
 </script>
 
