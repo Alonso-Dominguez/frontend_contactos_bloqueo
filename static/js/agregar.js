@@ -1,4 +1,9 @@
 async function agregarContacto() {
+    const apiURL = 'https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos';
+
+    // Obtén el token desde donde lo tengas almacenado
+    const token = localStorage.getItem('token');
+
     try {
         const nombre = document.getElementById('nombre').value;
         const primer_apellido = document.getElementById('primer_apellido').value;
@@ -6,11 +11,14 @@ async function agregarContacto() {
         const email = document.getElementById('email').value;
         const telefono = document.getElementById('telefono').value;
 
-        const response = await fetch('https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos', {
+        const headers = new Headers({
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+        });
+
+        const response = await fetch(apiURL, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: headers,
             body: JSON.stringify({
                 nombre: nombre,
                 primer_apellido: primer_apellido,
@@ -22,7 +30,7 @@ async function agregarContacto() {
 
         if (response.ok) {
             alert('Contacto agregado correctamente.');
-            // Actualizar la interfaz de usuario según sea necesario, sin recargar toda la página
+            document.location.reload();
         } else {
             const errorData = await response.json();
             alert(`Error al agregar el contacto: ${errorData.detail}`);
@@ -32,3 +40,5 @@ async function agregarContacto() {
         alert('Error inesperado al agregar el contacto.');
     }
 }
+
+agregarContacto();
