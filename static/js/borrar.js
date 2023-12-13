@@ -1,16 +1,25 @@
 async function borrarContacto() {
+    const apiURL = 'https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos';
+
+    // Obtén el token desde donde lo tengas almacenado
+    const token = localStorage.getItem('token');
+
     try {
         const id = document.getElementById('borrar-id').value;
-        const response = await fetch(`https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos/${id}`, {
+
+        const headers = new Headers({
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+        });
+
+        const response = await fetch(`${apiURL}/${id}`, {
             method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: headers,
         });
 
         if (response.ok) {
             alert('Contacto borrado correctamente.');
-            // Actualizar la interfaz de usuario según sea necesario, sin recargar toda la página
+            document.location.reload();
         } else {
             const errorData = await response.json();
             alert(`Error al borrar el contacto: ${errorData.detail}`);
@@ -20,3 +29,5 @@ async function borrarContacto() {
         alert('Error inesperado al borrar el contacto.');
     }
 }
+
+borrarContacto();
