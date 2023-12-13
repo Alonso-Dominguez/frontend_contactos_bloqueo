@@ -4,7 +4,7 @@ async function actualizarContacto() {
     const token = localStorage.getItem('token');
 
     try {
-        const id = document.getElementById('actualizar-id').value;
+        const email = document.getElementById('actualizar-id').value;
         const nuevoNombre = document.getElementById('actualizar-nombre').value;
         const nuevoApellido_paterno = document.getElementById('actualizar-apellido-paterno').value;
         const nuevoApellido_materno = document.getElementById('actualizar-apellido-materno').value;
@@ -25,7 +25,7 @@ async function actualizarContacto() {
         };
 
         // Actualiza la URL para incluir el ID en lugar del email
-        const response = await axios.put(`${apiURL}/${id}`, data, { headers });
+        const response = await axios.put(`${apiURL}/${email}`, data, { headers });
 
         if (response.status === 200) {
             alert('Contacto actualizado correctamente.');
