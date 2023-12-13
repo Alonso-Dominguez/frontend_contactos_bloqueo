@@ -53,6 +53,7 @@
 </form>
 
 <script>
+
     async function login() {
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
@@ -70,7 +71,7 @@
             if (response.ok) {
                 alert("Login successful!\nToken: " + data.token);
                 // Almacenar el token en LocalStorage
-                localStorage.setItem('token', data.token);
+                sessionStorage.setItem('token', data.token);
                 // Redirigir a la página de inicio
                 window.location.href = "/inicio";
             } else {
