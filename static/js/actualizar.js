@@ -1,8 +1,8 @@
+// Obtén el token desde donde lo tengas almacenado
+const token = localStorage.getItem('token');
+
 async function actualizarContacto() {
     const apiURL = 'https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos';
-
-    // Obtén el token desde donde lo tengas almacenado
-const token = localStorage.getItem('token');
 
     try {
         const id = document.getElementById('actualizar-id').value;
