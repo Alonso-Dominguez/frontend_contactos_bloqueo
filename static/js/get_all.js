@@ -1,40 +1,31 @@
-function getAll(){
-	var request = new XMLHttpRequest;
-	request.open('GET',"https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos");
-	request.send();
+async function getAll() {
+    const apiURL = 'https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos';
 
-	request.onload = (e) => {
-		const response = request.responseText;
-		const json = JSON.parse(response);
-		console.log("response: " + response);
-        console.log("json: " + json);
-        console.log("status_code: " + request.status);
+    // Obtén el token desde donde lo tengas almacenado
+    const token = localStorage.getItem('token');
 
-        console.log("Nombre: " + json[0]["nombre"]);
-        console.log("Email: " + json[0]["primer_apellido"]);
-        console.log("Email: " + json[0]["segundo_apellido"]);
-        console.log("Email: " + json[0]["email"]);
-        console.log("Telefono: " + json[0]["telefono"]);
+    try {
+        const headers = new Headers({
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+        });
 
-        const tbody_contactos = document.getElementById("tybody_listar-contactos");
+        const response = await fetch(apiURL, {
+            method: 'GET',
+            headers: headers,
+        });
 
-        var tr = document.createElement("tr")
-		var td_email = document.createElement("td");
-		var td_nombre = document.createElement("td");
-		var td_telefono = document.createElement("td")
+        if (response.ok) {
+            const contactos = await response.json();
+            console.log(contactos);
+        } else {
+            const errorData = await response.json();
+            alert(`Error al obtener la lista de contactos: ${errorData.detail}`);
+        }
+    } catch (error) {
+        console.error('Error inesperado:', error);
+        alert('Error inesperado al obtener la lista de contactos.');
+    }
+}
 
-		td_nombre.innerHTML = json[0]["nombre"];
-		td_primer_apellido.innerHTML = json[0]["primer_apellido"];
-		td_segundo_apellido.innerHTML = json[0]["segundo_apellido"];
-		td_telefono.innerHTML = json[0]["telefono"];
-		td_email.innerHTML = json[0]["email"];
-		
-		tr.appendChild(td_nombre);
-		tr.appendChild(td_primer_apellido);
-		tr.appendChild(td_segundo_apellido);
-		tr.appendChild(td_email);
-
-		tbody_contactos.appendChild(tr);
-				
-	};
-};
+getAll();
