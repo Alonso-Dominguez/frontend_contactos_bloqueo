@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Contactos por Email</title>
+    <!-- Agrega el enlace a Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <script src="../static/js/buscar.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-5">Buscar Contactos por Email</h2>
+        
+        <div class="form-group">
+            <label for="email" class="form-label">Email a buscar:</label>
+            <!-- Utiliza clases de Bootstrap para el input y el botón -->
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="email" placeholder="Ingrese el email">
+                <button class="btn btn-primary" onclick="buscarContactos()">Buscar</button>
+            </div>
+            <!-- Utiliza clases de Bootstrap para el botón Cancelar -->
+            <a href="/inicio" class="btn btn-secondary">Cancelar</a>
+        </div>
+
+        <!-- Convierte la lista de resultados en un ul con clases de Bootstrap -->
+        <ul class="list-group" id="resultado-busqueda"></ul>
+    </div>
+
+    <!-- Agrega el enlace a Bootstrap JS y Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

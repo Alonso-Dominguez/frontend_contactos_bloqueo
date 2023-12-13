@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrar Contacto</title>
+    <!-- Agrega el enlace a Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <script src="../static/js/borrar.js"></script>
+    <script src="../static/js/listar.js"></script> 
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Borrar Contacto</h2>
+            <ul id="lista-contactos"></ul>
+        <div class="form-group">
+            <input type="number" class="form-control" id="borrar-id" placeholder="ID del contacto a borrar">
+        </div>
+        
+        <button class="btn btn-danger" onclick="borrarContacto()">Borrar Contacto</button>
+        <a href="/inicio" class="btn btn-secondary">Cancelar</a>
+    </div>
+
+    <!-- Agrega el enlace a Bootstrap JS y Popper.js (necesario para algunos componentes de Bootstrap) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

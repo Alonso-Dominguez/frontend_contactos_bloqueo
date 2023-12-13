@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactos App</title>
+    <!-- Agrega el enlace a Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <script src="../static/js/listar.js"></script>  
+    <script src="../static/js/get_all.js"></script>   
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5 mb-4">Contactos</h1>
+
+        <h2>Listado de Contactos</h2>
+        <!-- Convierte la lista de contactos en una tabla -->
+        <table class="table table-striped mb-4">
+            <tbody id="lista-contactos"></tbody>
+        </table>
+
+        <a href="/agregar" class="btn btn-primary me-2">Agregar Contacto</a>
+        <a href="actualizar" class="btn btn-warning me-2">Actualizar Contacto</a>
+        <a href="/buscar" class="btn btn-info me-2">Buscar Contacto</a>
+        <a href="/borrar" class="btn btn-danger">Borrar Contacto</a>
+    </div>
+
+    <!-- Agrega el enlace a Bootstrap JS y Popper.js (necesario para algunos componentes de Bootstrap) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.body.onload = getAll();
+    </script>
+</body>
+</html>
+
