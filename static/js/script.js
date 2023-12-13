@@ -1,4 +1,9 @@
 async function agregarContacto() {
+    const apiURL = 'https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos';
+
+    // Obtén el token desde donde lo tengas almacenado
+    const token = localStorage.getItem('token');
+
     try {
         const nombre = document.getElementById('nombre').value;
         const primer_apellido = document.getElementById('primer_apellido').value;
@@ -6,11 +11,14 @@ async function agregarContacto() {
         const email = document.getElementById('email').value;
         const telefono = document.getElementById('telefono').value;
 
-        const response = await fetch('https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos', {
+        const headers = new Headers({
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+        });
+
+        const response = await fetch(apiURL, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: headers,
             body: JSON.stringify({
                 nombre: nombre,
                 primer_apellido: primer_apellido,
@@ -34,10 +42,23 @@ async function agregarContacto() {
 }
 
 async function buscarContactos() {
+    const apiURL = 'https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos/buscar';
+
+    // Obtén el token desde donde lo tengas almacenado
+    const token = localStorage.getItem('token');
+
     try {
         const email = document.getElementById('email').value;
 
-        const response = await fetch(`https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos/buscar?email=${email}`);
+        const headers = new Headers({
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+        });
+
+        const response = await fetch(`${apiURL}?email=${email}`, {
+            method: 'GET',
+            headers: headers,
+        });
 
         if (response.ok) {
             const contactos = await response.json();
@@ -46,6 +67,7 @@ async function buscarContactos() {
 
             for (const contacto of contactos) {
                 const listItem = document.createElement('li');
+                listItem.classList.add('list-group-item');
                 listItem.textContent = `${contacto.nombre} ${contacto.primer_apellido} ${contacto.segundo_apellido} - Email: ${contacto.email} - Teléfono: ${contacto.telefono}`;
                 resultadoBusqueda.appendChild(listItem);
             }
@@ -60,6 +82,11 @@ async function buscarContactos() {
 }
 
 async function actualizarContacto() {
+    const apiURL = 'https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos';
+
+    // Obtén el token desde donde lo tengas almacenado
+    const token = localStorage.getItem('token');
+
     try {
         const id = document.getElementById('actualizar-id').value;
         const nuevoNombre = document.getElementById('actualizar-nombre').value;
@@ -68,11 +95,14 @@ async function actualizarContacto() {
         const nuevoEmail = document.getElementById('actualizar-email').value;
         const nuevoTelefono = document.getElementById('actualizar-telefono').value;
 
-        const response = await fetch(`https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos/${id}`, {
+        const headers = new Headers({
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+        });
+
+        const response = await fetch(`${apiURL}/${id}`, {
             method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: headers,
             body: JSON.stringify({
                 nombre: nuevoNombre,
                 primer_apellido: nuevoApellido_paterno,
@@ -96,13 +126,22 @@ async function actualizarContacto() {
 }
 
 async function borrarContacto() {
+    const apiURL = 'https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos';
+
+    // Obtén el token desde donde lo tengas almacenado
+    const token = localStorage.getItem('token');
+
     try {
         const id = document.getElementById('borrar-id').value;
-        const response = await fetch(`https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos/${id}`, {
+
+        const headers = new Headers({
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+        });
+
+        const response = await fetch(`${apiURL}/${id}`, {
             method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: headers,
         });
 
         if (response.ok) {
@@ -119,13 +158,26 @@ async function borrarContacto() {
 }
 
 async function cargarContactos() {
+    const apiURL = 'https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos';
+
+    // Obtén el token desde donde lo tengas almacenado
+    const token = localStorage.getItem('token');
+
     try {
-        const response = await fetch('https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos');
-    
+        const headers = new Headers({
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+        });
+
+        const response = await fetch(apiURL, {
+            method: 'GET',
+            headers: headers,
+        });
+
         if (response.ok) {
             const contactos = await response.json();
             const listaContactos = document.getElementById('lista-contactos');
-    
+
             for (const contacto of contactos) {
                 const listItem = document.createElement('li');
                 listItem.textContent = `${contacto.id_contacto} ${contacto.nombre} ${contacto.primer_apellido} ${contacto.segundo_apellido} - Email: ${contacto.email} - Teléfono: ${contacto.telefono}`;
