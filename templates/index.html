@@ -11,7 +11,7 @@
     <script src="../static/js/get_all.js"></script>   
     <script>
         // Verificar si el token está presente en el LocalStorage
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         if (!token) {
             // Si no hay token, redirige al usuario a la página de inicio de sesión
             window.location.href = "/";
