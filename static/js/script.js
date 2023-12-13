@@ -68,7 +68,7 @@ async function actualizarContacto() {
         const nuevoEmail = document.getElementById('actualizar-email').value;
         const nuevoTelefono = document.getElementById('actualizar-telefono').value;
 
-        const response = await fetch(`https://backend-contactos-jadc-b1444a39f4f7.herokuapp.com/contactos/${id}`, {
+        const response = await fetch(`https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ async function actualizarContacto() {
 async function borrarContacto() {
     try {
         const id = document.getElementById('borrar-id').value;
-        const response = await fetch(`https://backend-contactos-jadc-b1444a39f4f7.herokuapp.com/contactos/${id}`, {
+        const response = await fetch(`https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ async function borrarContacto() {
 
 async function cargarContactos() {
     try {
-        const response = await fetch('https://backend-contactos-jadc-b1444a39f4f7.herokuapp.com/contactos');
+        const response = await fetch('https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos');
     
         if (response.ok) {
             const contactos = await response.json();
