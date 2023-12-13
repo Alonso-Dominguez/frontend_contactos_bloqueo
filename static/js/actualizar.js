@@ -5,7 +5,7 @@ async function actualizarContacto() {
     const apiURL = 'https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos';
 
     try {
-        const id = document.getElementById('actualizar-id').value;
+        const email = document.getElementById('actualizar-id').value;
         const nuevoNombre = document.getElementById('actualizar-nombre').value;
         const nuevoApellido_paterno = document.getElementById('actualizar-apellido-paterno').value;
         const nuevoApellido_materno = document.getElementById('actualizar-apellido-materno').value;
@@ -25,7 +25,7 @@ async function actualizarContacto() {
             telefono: nuevoTelefono,
         });
 
-        const response = await fetch(`${apiURL}/${id}`, {
+        const response = await fetch(`${apiURL}/${email}`, {
             method: 'PUT',
             headers: headers,
             body: body,
