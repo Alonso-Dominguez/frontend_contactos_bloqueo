@@ -1,9 +1,12 @@
+// Verificar si el token está presente en el sessionStorage
+const token = sessionStorage.getItem('token');
+if (!token) {
+    // Si no hay token, redirige al usuario a la página de inicio de sesión
+    window.location.href = "/";
+}
+
 async function cargarContactos() {
     const apiURL = 'https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos';
-
-    // Obtén el token desde donde lo tengas almacenado
-    const token = localStorage.getItem('token');
-
 
     try {
         const headers = new Headers({
