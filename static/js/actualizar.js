@@ -2,7 +2,10 @@ async function actualizarContacto() {
     const apiURL = 'https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos';
 
     // Obtén el token desde donde lo tengas almacenado
-    const token = localStorage.getItem('token');
+const token = localStorage.getItem('token');
+
+async function actualizarContacto() {
+    const apiURL = 'https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos';
 
     try {
         const id = document.getElementById('actualizar-id').value;
@@ -17,16 +20,18 @@ async function actualizarContacto() {
             "Content-Type": "application/json",
         });
 
+        const body = JSON.stringify({
+            nombre: nuevoNombre,
+            primer_apellido: nuevoApellido_paterno,
+            segundo_apellido: nuevoApellido_materno,
+            email: nuevoEmail,
+            telefono: nuevoTelefono,
+        });
+
         const response = await fetch(`${apiURL}/${id}`, {
             method: 'PUT',
             headers: headers,
-            body: JSON.stringify({
-                nombre: nuevoNombre,
-                primer_apellido: nuevoApellido_paterno,
-                segundo_apellido: nuevoApellido_materno,
-                email: nuevoEmail,
-                telefono: nuevoTelefono,
-            }),
+            body: body,
         });
 
         if (response.ok) {
@@ -41,5 +46,5 @@ async function actualizarContacto() {
         alert('Error inesperado al actualizar el contacto.');
     }
 }
-
+}
 actualizarContacto();
