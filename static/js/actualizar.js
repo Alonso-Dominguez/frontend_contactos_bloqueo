@@ -43,5 +43,5 @@ const token = localStorage.getItem('token');
         alert('Error inesperado al actualizar el contacto.');
     }
 }
-}
+
 actualizarContacto();
