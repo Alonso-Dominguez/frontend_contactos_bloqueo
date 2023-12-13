@@ -1,8 +1,21 @@
 async function buscarContactos() {
+    const apiURL = 'https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos/buscar';
+
+    // Obtén el token desde donde lo tengas almacenado
+    const token = localStorage.getItem('token');
+
     try {
         const email = document.getElementById('email').value;
 
-        const response = await fetch(`https://backend-contactos-bloqueo-fb3d5fd89684.herokuapp.com/contactos/buscar?email=${email}`);
+        const headers = new Headers({
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+        });
+
+        const response = await fetch(`${apiURL}?email=${email}`, {
+            method: 'GET',
+            headers: headers,
+        });
 
         if (response.ok) {
             const contactos = await response.json();
@@ -24,3 +37,5 @@ async function buscarContactos() {
         alert('Error inesperado al buscar contactos.');
     }
 }
+
+buscarContactos();
